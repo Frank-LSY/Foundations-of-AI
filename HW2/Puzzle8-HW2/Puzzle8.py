@@ -8,12 +8,12 @@ This module includes:
      - Search Tree
      - hash table implementation
      - 5 Examples of increasing complexity
-@author: milos
+@author: Frank Lu
 
 """
 from collections import deque
 import random
-from heuristic import h_function
+from heuristic2 import h_function
 
 
 NO_MOVE =-1
