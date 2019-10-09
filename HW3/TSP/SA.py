@@ -12,6 +12,7 @@ import math
 import random
 import matplotlib.pyplot as plt
 
+# the cooling strategy designed in part c
 def cooling_strategy(init_temperature,no_of_steps,i):
     part_steps = 0.3 * no_of_steps
     half_temperature = init_temperature/2
@@ -23,7 +24,8 @@ def cooling_strategy(init_temperature,no_of_steps,i):
         #print(temperature)
     return temperature
 
-def sim_anneal(TSP_problem,no_of_steps,init_temperature):
+#use cooling to determine different cooling strategy, 0 is the strategy given in part a
+def sim_anneal(TSP_problem,no_of_steps,init_temperature, cooling=0):
     init_tour = TSP_problem.generate_random_tour()
     init_distance = TSP_problem.evaluate_tour(init_tour)
 
@@ -32,10 +34,11 @@ def sim_anneal(TSP_problem,no_of_steps,init_temperature):
     tour_tried = 0
     tour_accepted = 0
     energy_atlas = []
-    half_temperature = init_temperature/2
-    part_steps = 0.3 * no_of_steps
     for i in range(no_of_steps):
-        temperature = cooling_strategy(init_temperature,no_of_steps,i)
+        if cooling==0:
+            temperature = (init_temperature/no_of_steps)*(no_of_steps-i)
+        else:
+            temperature = cooling_strategy(init_temperature,no_of_steps,i)
         tour = TSP_problem.permute_tour(last_tour)
         tour_tried += 1
         tour_distance = TSP_problem.evaluate_tour(tour)

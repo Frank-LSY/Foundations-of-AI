@@ -23,7 +23,7 @@ i = 0
 while i<10:
 
     temperature = 100
-    output = sim_anneal(problem,steps,temperature)
+    output = sim_anneal(problem,steps,temperature,cooling=1)
     #print(output[3])
     if output[3]<20000:
         #print(steps)
